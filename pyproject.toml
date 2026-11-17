@@ -1,0 +1,30 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "ephemeris-mcp"
+version = "0.1.0"
+description = "Vedic and Western chart calculations (Swiss Ephemeris) as an MCP server"
+readme = "README.md"
+license = "AGPL-3.0-or-later"
+license-files = ["LICENSE"]
+authors = [{ name = "DS Net Labs" }]
+requires-python = ">=3.10"
+dependencies = [
+    "pyswisseph>=2.10.3,<3",
+    "mcp>=2.3,<3",
+]
+keywords = ["mcp", "astrology", "jyotish", "swiss-ephemeris", "vimshottari"]
+
+[project.optional-dependencies]
+test = ["pytest>=8"]
+
+[project.scripts]
+ephemeris-mcp = "ephemeris_mcp.server:main"
+
+[tool.setuptools]
+packages = ["ephemeris_mcp"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
