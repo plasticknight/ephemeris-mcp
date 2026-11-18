@@ -48,8 +48,30 @@ python3.12 -m venv .venv
 .venv/bin/pip install pytest && .venv/bin/pytest -q     # optional: ~100 checks, all offline
 ```
 
-`pyswisseph` ships pre-built for common platforms. Where it doesn't, pip
-compiles it, which needs a C compiler (`sudo dnf install gcc python3.12-devel`).
+Where `pyswisseph` has no pre-built package for your Python, pip compiles
+it, which needs a C compiler and Python's headers: on Rocky/RHEL
+`sudo dnf install gcc python3.12-devel`, on Ubuntu/Debian
+`sudo apt install build-essential python3-dev`.
+
+### Windows 10 and 11
+
+`pyswisseph` ships ready-built for Windows only up to **Python 3.11**; on
+newer Pythons it needs Microsoft's C++ build tools (several GB). So install
+Python 3.11 from [python.org](https://www.python.org/downloads/windows/)
+(tick "Add python.exe to PATH"), plus [Git for Windows](https://git-scm.com/download/win).
+Then, in PowerShell:
+
+```powershell
+git clone https://github.com/plasticknight/ephemeris-mcp.git
+cd ephemeris-mcp
+py -3.11 -m venv .venv
+.venv\Scripts\pip install . pytest
+.venv\Scripts\pytest -q          # optional: ~100 checks, all offline
+```
+
+The command to connect is then `.venv\Scripts\ephemeris-mcp.exe`. In JSON,
+write the path with forward slashes or doubled backslashes:
+`"C:/Users/you/ephemeris-mcp/.venv/Scripts/ephemeris-mcp.exe"`.
 
 ## Connect it
 
